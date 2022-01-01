@@ -1,0 +1,78 @@
+#Starting docker in interactive mode
+$sudo docker run --name firstdocker3 -it alpine sh   
+
+/ # 
+/ # ls
+bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
+/ # 
+
+
+#CTRL+D for closing the interactive session.
+#Container will be still running
+#Checking Container status.
+$sudo docker ps -a    
+                            
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS                      PORTS     NAMES
+005bdb221cb9   alpine    "sh"      2 minutes ago   Exited (0) 47 seconds ago             firstdocker3
+
+#Accessing the container again
+$sudo docker exec -it  firstdocker3 sh 
+
+/ # ls
+bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
+
+#Checking the os version
+$uname -a
+Linux 005bdb221cb9 5.10.0-kali7-amd64 #1 SMP Debian 5.10.28-1kali1 (2021-04-12) x86_64 Linux
+
+#Creating directory in container
+$sudo docker exec   firstdocker3 mkdir /tmp/kloudone/
+
+#Creating file inside a container
+$sudo docker exec   firstdocker3 touch /tmp/kloudone/docker.txt
+
+#Listing created files and folders
+$sudo docker exec   firstdocker3 ls /tmp/kloudone/  
+
+docker.txt
+
+#Inserting files from host to container
+$sudo docker cp alpinedocker firstdocker3:/tmp/kloudone/  
+
+#Listing the inserted file to container
+$sudo docker exec firstdocker3 ls /tmp/kloudone/      
+
+alpinedocker
+docker.txt
+
+#Inserting files from  container to host
+$sudo docker cp  firstdocker3:/tmp/kloudone/docker.txt . 
+
+
+#Docker usage status
+$sudo docker stats
+
+CONTAINER ID   NAME           CPU %     MEM USAGE / LIMIT   MEM %     NET I/O      BLOCK I/O     PIDS
+005bdb221cb9   firstdocker3   0.00%     536KiB / 3.728GiB   0.01%     1.3kB / 0B   57.3kB / 0B   1
+
+#Docker Events
+$sudo docker system events
+   
+#Docker disk sapce
+$sudo docker system df
+
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          1         1         5.586MB   0B (0%)
+Containers      1         1         1.256kB   0B (0%)
+Local Volumes   0         0         0B        0B
+Build Cache     0         0         0B        0B
+
+#Docker log
+$sudo docker logs firstdocker3
+
+#Stoping container
+$sudo docker stop firstdocker3
+
+
+
+
