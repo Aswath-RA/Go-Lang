@@ -1,0 +1,58 @@
+#Dockerfile Executed 
+$sudo docker build -t centoscustom:v1 .
+
+Sending build context to Docker daemon  19.46kB
+Step 1/7 : FROM centos
+ ---> 5d0da3dc9764
+Step 2/7 : LABEL "Author"="aswathra"
+ ---> Using cache
+ ---> 0628453f56a3
+Step 3/7 : RUN yum -y update
+ ---> Using cache
+ ---> 6ab79d4d8870
+Step 4/7 : RUN yum install -y httpd
+ ---> Using cache
+ ---> bfe9c7a29662
+Step 5/7 : COPY index.html /var/www/html/index.html
+ ---> Using cache
+ ---> 1e62e5e63670
+Step 6/7 : EXPOSE 80
+ ---> Using cache
+ ---> 547ef8c56fe6
+Step 7/7 : CMD apachectl -D FOREGROUND
+ ---> Running in 5f9a05bde471
+Removing intermediate container 5f9a05bde471
+ ---> 1f7283514297
+Successfully built 1f7283514297
+Successfully tagged centoscustom:v
+
+#Running the image with portforwading at 85
+$sudo docker run -d -it --name web7 -p 85:80 centoscustom:v1   
+
+8410fee865b6e664993dde3a7f9c737e26dae5100fe7219d78777b210ac10d1a
+
+#Listing the container process
+$sudo docker ps -a      
+                                    
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS                        PORTS                               NAMES
+8410fee865b6   centoscustom:v1   "/bin/sh -c 'apachec…"   10 seconds ago   Up 8 seconds                  0.0.0.0:85->80/tcp, :::85->80/tcp   web7
+c7f6b075e3d6   alpinenew:v1      "sh"                     4 hours ago      Exited (137) 46 minutes ago                                       firstdocker
+
+#Check your browser with the following link : http://localhost:85
+
+#Renaming image for push
+$sudo docker tag centoscustom:v1 aswathra/centoscustom:v1
+
+#Docker push
+$sudo docker push aswathra/centoscustom:v1
+
+The push refers to repository [docker.io/aswathra/centoscustom]
+b826bfd438cf: Pushed 
+2d1fce77af6f: Pushed 
+e268865ef537: Pushed 
+74ddd0ec08fa: Mounted from library/centos 
+v1: digest: sha256:01dcfc35ae54eba68519e6224756e07cf130821e639e7164609a30c52f555c7a size: 1161
+
+
+#Dockerhub Link
+https://hub.docker.com/repository/docker/aswathra/centoscustom
