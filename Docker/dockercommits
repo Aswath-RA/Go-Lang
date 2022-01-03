@@ -1,0 +1,111 @@
+#Docker image history
+$sudo docker history c059bfaa849c
+
+IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
+c059bfaa849c   5 weeks ago   /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B        
+<missing>      5 weeks ago   /bin/sh -c #(nop) ADD file:9233f6f2237d79659…   5.59MB    
+
+#Docker inspect
+$sudo docker inspect c059bfaa849c
+
+[
+    {
+        "Id": "sha256:c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18",
+        "RepoTags": [
+            "alpine:latest"
+        ],
+        "RepoDigests": [
+            "alpine@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300"
+        ],
+        "Parent": "",
+        "Comment": "",
+        "Created": "2021-11-24T20:19:40.483367546Z",
+        "Container": "4292e8ed2ef2b6dc4bbaf8e1cda0cb5f95b96adc4aa2da3d15181b54d07a0b34",....
+        
+        
+#Saving Docker image.     
+$sudo docker save c059bfaa849c > alpinebkup.tar
+                                                                                
+┌──(blackfox㉿kali)-[~]
+└─$ ls
+alpinebkup.tar  Downloads   Music            python.sh
+alpine.tar      gittoken    Pictures         Templates
+Desktop         go          Public           thinclient_drives
+Documents       kalitorify  PycharmProjects  Videos
+
+#Docker image loading.
+sudo docker load -i alpinebkup.tar            
+ Loading layer [==================================================>]  5.866MB/5.866MB
+ sha256:c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
+
+#Docker tag
+$sudo docker tag  c059bfaa849c alpine:latest    
+
+#Docker run and making Directory and files.
+$sudo docker run --name firstdocker -it alpine sh 
+
+/ # ls
+bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
+/ # cd tmp
+/tmp # ls
+/tmp # mkdir DockerLearning 
+/tmp # cd DockerLearning/
+/tmp/DockerLearning # cat >> index.html
+Welcome
+/tmp/DockerLearning # cat index.html 
+Welcome
+/tmp/DockerLearning # ls
+index.html
+
+#Running new commited image
+$sudo docker run --name firstdocker -it alpinenew:v1 sh
+
+/ # ls
+bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
+/ # cd tmp
+/tmp # ls
+DockerLearning
+/tmp # 
+
+#Docker History
+$sudo docker history alpinenew:v1
+
+IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
+f53bb1102cbf   18 minutes ago   sh                                              114B      
+c059bfaa849c   5 weeks ago      /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B        
+<missing>      5 weeks ago      /bin/sh -c #(nop) ADD file:9233f6f2237d79659…   5.59MB    
+
+#Renaming image for Docker push
+$sudo docker tag alpinenew:v1 aswathra/alpinenew:v1
+
+#Docker push
+$sudo docker push aswathra/alpinenew:v1       
+                                                                                                                  
+The push refers to repository [docker.io/aswathra/alpinenew]
+cd25fcba38b5: Pushed 
+8d3ac3489996: Mounted from library/alpine 
+v1: digest: sha256:bd4ff131d4bff2783442a2c773755e3fea084dbf04e57d49c54219dc27f93486 size: 735
+
+#Docker Search
+$sudo docker search alpinenew                
+
+NAME                               DESCRIPTION         STARS     OFFICIAL   AUTOMATED
+librus/alpinenewdockerhub          for jelastic task   0                    
+diogomonica/alpinenew                                  0                    
+kwening/alpinenew                                      0                    
+tejaldave79/alpinenew                                  0                        
+nvmthedetails/alpinenew                                0                    
+mrhan18/alpinenew                                      0                    
+chauhanhimzz/alpinenew                                 0                    
+tdshakes12720/alpinenew                                0                    
+aswathra/alpinenew                                     0     ###               
+210800/alpinenew                                       0                    
+                                                           
+
+
+#First Docker push.
+https://hub.docker.com/repository/docker/aswathra/alpinenew
+
+
+
+
