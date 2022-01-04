@@ -1,0 +1,57 @@
+#Docker network commands
+
+#Docker network listing
+$sudo docker network ls
+
+NETWORK ID     NAME      DRIVER    SCOPE
+4582d52e909d   bridge    bridge    local
+9cdfb8d06866   host      host      local
+3b8b50abb257   none      null      local
+
+#Docker network creation
+$sudo docker network create test-bridge
+
+20cd13ad7cabad013a9c3abff1b43875ce89336ffa404054fd95b98c267b642b
+
+#New network inspect
+$sudo docker network inspect test-bridge
+
+
+[
+    {
+        "Name": "test-bridge",
+        "Id": "20cd13ad7cabad013a9c3abff1b43875ce89336ffa404054fd95b98c267b642b",
+        "Created": "2022-01-04T01:04:53.273389423-05:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+
+#Docker PortForwarding verification
+$sudo docker port web7 
+
+80/tcp -> 0.0.0.0:85
+80/tcp -> :::85
+
+
