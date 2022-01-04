@@ -1,0 +1,125 @@
+#Docker volume
+
+$sudo docker volume   
+
+Usage:  docker volume COMMAND
+
+Manage volumes
+
+Commands:
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove all unused local volumes
+  rm          Remove one or more volumes
+
+Run 'docker volume COMMAND --help' for more information on a command.
+
+
+#Docker volume creation
+$sudo docker volume create data_val
+
+data_val
+
+#Docker volume listing
+$sudo docker volume ls
+
+DRIVER    VOLUME NAME
+local     data_val
+
+#Docker volume run
+$sudo docker run -d -it --name ubuntuvol --mount source=data_val,destination=/dataval ubuntu /bin/sh
+
+9a255c817af8311d3810841709137a2061153d7f7be9a20deeb59b342e45cb55
+
+#Docker volume exec
+$sudo docker exec -it ubuntuvol /bin/bash
+
+root@9a255c817af8:/# ls
+bin  boot  dataval  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@9a255c817af8:/# cd dataval/
+root@9a255c817af8:/dataval# ls
+root@9a255c817af8:/dataval# touch dockerlearn
+root@9a255c817af8:/dataval# exit
+
+#Docker inspect
+$sudo docker inspect ubuntuvol
+
+"Mounts": [
+            {
+                "Type": "volume",
+                "Name": "data_val",
+                "Source": "/var/lib/docker/volumes/data_val/_data",
+                "Destination": "/dataval",
+                "Driver": "local",
+                "Mode": "z",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        
+        
+ #Inserted data using host machine
+ ┌──(blackfox㉿kali)-[/var/…/docker/volumes/data_val/_data]
+└─$ sudo touch logs                                                                                                                                                  
+                                                                                                                                                                       
+┌──(blackfox㉿kali)-[/var/…/docker/volumes/data_val/_data]
+└─$ ls
+dockerlearn  learner  logs
+
+
+#listed the added values in docker container
+$sudo docker exec -it ubuntuvol /bin/bash
+
+root@9a255c817af8:/# ls
+bin  boot  dataval  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@9a255c817af8:/# cd dataval/
+root@9a255c817af8:/dataval# ls
+dockerlearn  learner  logs
+
+
+#Docker container removed
+$sudo docker stop ubuntuvol            
+ubuntuvol
+
+$sudo docker rm ubuntuvol    
+ubuntuvol
+         
+$sudo docker ps -a       
+CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS                      PORTS     NAMES
+8410fee865b6   centoscustom:v1   "/bin/sh -c 'apachec…"   23 hours ago   Exited (137) 5 hours ago              web7
+c7f6b075e3d6   alpinenew:v1      "sh"                     27 hours ago   Exited (137) 24 hours ago             firstdocker
+                                                                                                                               
+
+#Files available in Host
+┌──(blackfox㉿kali)-[/var/…/docker/volumes/data_val/_data]
+└─$ ls
+
+dockerlearn  learner  logs
+
+
+#Deleting Docker volume
+$sudo docker volume ls 
+          
+DRIVER    VOLUME NAME
+local     appvol
+local     data_val
+local     dataval
+
+$sudo docker volume rm dataval                                                                                                                                   1 ⨯
+dataval
+
+#Docker volume prune
+$sudo docker volume prune                   
+WARNING! This will remove all local volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Deleted Volumes:
+data_val
+appvol
+
+Total reclaimed space: 0B
+
+       
+
+
+                                                                         
