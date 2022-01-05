@@ -1,0 +1,115 @@
+#Docker swarm
+
+#Docker swarm manager 
+$sudo docker swarm init --advertise-addr 192.168.29.12
+
+Swarm initialized: current node (qwb44pedctgqqs16glpqg7a08) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-3id6md7kt03rhv49j6luwrlp89bwz72i21dnzj3wry9dh46rqq-dxseol0tgqf7lkp4v3aoz7sjh 192.168.29.12:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+#Docker swarm worker node joined
+$sudo docker swarm join --token SWMTKN-1-3id6md7kt03rhv49j6luwrlp89bwz72i21dnzj3wry9dh46rqq-dxseol0tgqf7lkp4v3aoz7sjh 192.168.29.12:2377                         1 ⨯
+
+
+This node joined a swarm as a worker.
+
+#Docker join for another manager
+$docker swarm join-token manager
+
+
+#Docker nodes
+$sudo docker node ls
+                                  
+ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+qwb44pedctgqqs16glpqg7a08 *   kali       Ready     Active         Leader           20.10.11+dfsg1
+srsqvb9kgj9hmmoaaf8xm9sz5     kali       Ready     Active                          20.10.11+dfsg1
+
+#Docker manager info
+$sudo docker info
+
+Swarm: active
+NodeID: qwb44pedctgqqs16glpqg7a08
+Is Manager: true
+ClusterID: u31hqxjba403dsnkborpo8ov2
+Managers: 1
+Nodes: 2
+
+
+#Docker worker node info
+$sudo docker info
+
+Swarm: active
+NodeID: srsqvb9kgj9hmmoaaf8xm9sz5
+Is Manager: false
+Node Address: 192.168.29.190
+Manager Addresses:
+192.168.29.12:2377
+
+
+#Docker swarm network
+$sudo docker network ls    
+             
+NETWORK ID     NAME              DRIVER    SCOPE
+612c10e03105   bridge            bridge    local
+900683fc2675   docker_gwbridge   bridge    local
+9cdfb8d06866   host              host      local
+omb0baf4m5i7   ingress           overlay   swarm
+3b8b50abb257   none              null      local
+20cd13ad7cab   test-bridge       bridge    local
+
+
+#Docker overlay creation
+$sudo docker network create -d overlay newoverlay
+
+pwoqc47z00nc8texvskpge8mw
+
+#Docker swarm network
+$sudo docker network ls                          
+NETWORK ID     NAME              DRIVER    SCOPE
+612c10e03105   bridge            bridge    local
+900683fc2675   docker_gwbridge   bridge    local
+9cdfb8d06866   host              host      local
+omb0baf4m5i7   ingress           overlay   swarm
+pwoqc47z00nc   newoverlay        overlay   swarm
+3b8b50abb257   none              null      local
+20cd13ad7cab   test-bridge       bridge    local
+
+#Creating extra replicas
+$sudo docker service scale web1=5
+
+#Decreasing extra replicas
+$sudo docker service scale web1=2
+
+#update 
+$sudo docker service --replicas 2 --name web2 ubuntu:v1
+$sudo docker service update --image ubuntu:latest
+
+#rollback
+$sudo docker service rollback web2
+
+#promote nodes
+sudo docker node promote srsqvb9kgj9hmmoaaf8xm9sz5 
+
+#Demote
+sudo docker node demote srsqvb9kgj9hmmoaaf8xm9sz5 
+
+#removing nodes
+sudo docker node rm web2
+
+
+
+
+
+
+
+ 
+
+                              
+
+ 
+
