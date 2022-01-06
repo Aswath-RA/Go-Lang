@@ -1,0 +1,109 @@
+#Docker Compose 
+
+#Cloning the compose files from repo
+$git clone https://github.com/learnitguide/kubernetes-knote.git
+
+Cloning into 'kubernetes-knote'...
+remote: Enumerating objects: 34, done.
+remote: Counting objects: 100% (34/34), done.
+remote: Compressing objects: 100% (25/25), done.
+remote: Total 34 (delta 8), reused 13 (delta 2), pack-reused 0
+Receiving objects: 100% (34/34), 7.15 KiB | 155.00 KiB/s, done.
+Resolving deltas: 100% (8/8), done.
+
+#Installing Docker compose
+$sudo apt-get install docker-compose
+
+[sudo] password for blackfox: 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  cryptsetup-run fastjar jarwrapper libavresample4 librest-0.7-0 libwacom-bin python3-editor python3-parameterized ruby-atomic ruby-thread-safe starkiller zaproxy
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  python3-cached-property python3-docker python3-dockerpty python3-docopt python3-dotenv
+The following NEW packages will be installed
+
+#Running Docker Compose
+$sudo docker-compose up   
+          
+WARNING: The Docker Engine you're using is running in swarm mode.
+Compose does not use swarm mode to deploy services to multiple nodes in a swarm. All containers will be scheduled on the current node.
+To deploy your application across the swarm, use `docker stack deploy`.
+
+Creating network "docker-compose_default" with the default driver
+Pulling mongo (mongo:)...
+ERROR: Get "https://registry-1.docker.io/v2/": dial tcp: lookup registry-1.docker.io on [::1]:53: read udp [::1]:48898->[::1]:53: read: connection refused
+
+
+#Docker compose error because of swarm mode
+#Leaving from docker compose
+sudo docker swarm leave --force        
+                                                                                                                        1 ⨯
+Node left the swarm.
+
+
+#Docker compose cmd
+$sudo docker-compose up   
+          
+Pulling mongo (mongo:)...
+latest: Pulling from library/mongo
+7b1a6ab2e44d: Already exists
+90eb44ebc60b: Pull complete
+5085b59f2efb: Pull complete
+c7499923d022: Pull complete
+019496b6c44a: Pull complete
+c0df4f407f69: Pull complete
+351daa315b6c: Pull complete
+a233e6240acc: Pull complete
+a3f57d6be64f: Pull complete
+dd1b5b345323: Pull complete
+Digest: sha256:5be752bc5f2ac4182252d0f15d74df080923aba39700905cb26d9f70f39e9702
+Status: Downloaded newer image for mongo:latest
+Pulling app (learnitguide/knotejs:1.0)...
+1.0: Pulling from learnitguide/knotejs
+27833a3ba0a5: Pull complete
+63859d5abfc2: Pull complete
+b2d5ed4bb42b: Pull complete
+4e47a5861bae: Pull complete
+f0a62fbb2810: Pull complete
+45ab652a1a9c: Pull complete
+
+#Docker-compose images
+sudo docker-compose images                                                                                                                                     
+ Container         Repository         Tag       Image Id       Size  
+---------------------------------------------------------------------
+knote-app     learnitguide/knotejs   1.0      89f5dd54dec0   180.7 MB
+knote-mongo   mongo                  latest   dfda7a2cf273   692.6 MB
+
+
+#Docker-compose detached mode
+$sudo docker-compose up -d       
+                                                                                                                               
+Starting knote-mongo ... done
+Starting knote-app   ... done
+                                 
+#Docker-compose top command
+$sudo docker-compose top 
+         
+knote-app
+UID    PID    PPID   C   STIME   TTY     TIME          CMD     
+---------------------------------------------------------------
+root   4502   4481   2   05:55   ?     00:00:07   node index.js
+
+knote-mongo
+  UID      PID    PPID   C   STIME   TTY     TIME             CMD         
+--------------------------------------------------------------------------
+systemd+   4372   4350   1   05:55   ?     00:00:05   mongod --bind_ip_all
+
+
+#Docker-compose process
+$sudo docker-compose ps    
+       
+   Name                 Command             State                  Ports                
+----------------------------------------------------------------------------------------
+knote-app     node index.js                 Up      0.0.0.0:80->3000/tcp,:::80->3000/tcp
+knote-mongo   docker-entrypoint.sh mongod   Up      27017/tcp                           
+                                                                                            
+                                                                                          
