@@ -1,0 +1,116 @@
+#Docker memory & cpu allocation and management
+
+#Docker info
+$sudo docker info                 
+
+Client:
+Context:    default
+Debug Mode: false
+
+Server:
+Containers: 4
+Running: 0
+Paused: 0
+Stopped: 4
+Images: 12
+Kernel Version: 5.10.0-kali7-amd64
+Operating System: Kali GNU/Linux Rolling
+OSType: linux
+Architecture: x86_64
+CPUs: 4
+Total Memory: 3.728GiB
+Name: kali
+
+#Available memory in host 
+$free -m
+               total        used        free      shared  buff/cache   available
+Mem:            3817         766        2198         128         851        2705
+Swap:            974           0         974
+
+#Memory reservation and limit for a container
+$sudo docker run  --memory-reservation=256m -m 512m -d --name memory ubuntu   
+                                                                              
+6a869a32c9c6aac3aa4cddaa1fe8473ff2b4bb7a070fab6f593ab9926b392172
+
+
+#inspect of container
+sudo docker inspect memory
+
+ "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 268435456,
+            "MemorySwap": 1073741824,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            
+            
+#Docker container usage
+$sudo docker stats            
+            
+CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O     BLOCK I/O    PIDS
+9893715553ad   memory1   0.00%     444KiB / 512MiB     0.08%     876B / 0B   131kB / 0B   1
+
+#Cpu allocation
+$sudo docker run  --cpus=1.1  -it -d --name cpu ubuntu sh
+
+d92ec97256d3ecff39987389f71f3a3beafb2cc498b806886087c584b9ecae5b
+
+
+
+#Container inspect for Cpu allocation
+$sudo docker inspect cpu
+
+ "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 1100000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOp
+            
+            
+            
+#cpu allocation shares
+sudo docker run --cpu-shares=1000 --cpus=1 -d -it --name cpushares ubuntu sh  
+                                                                            
+4a2243d76f6192ce38bfdb99e9e60c24b50f9358b3c2e9ffddcc56c6e6b634da
+
+
+#Container inspect for cpu shares
+$sudo docker inspect cpushares
+
+ "CpuShares": 1000,
+            "Memory": 0,
+            "NanoCpus": 1000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+        
+#Container stopping
+$sudo docker stop memory cpu cpushares
+ 
+ memory
+ cpu 
+ cpushares
+ 
+#Removing containers
+$sudo docker rm memory1 cpu cpushares    
+                                    
+memory1
+cpu
+cpushares
+
+ 
+ 
+ 
+            
+            
+            
+
+            
+         
