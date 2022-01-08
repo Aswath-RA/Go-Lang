@@ -1,0 +1,210 @@
+#git commands
+
+#git initalize
+$git init .
+
+Initialized empty Git repository in /home/blackfox/Desktop/Github/.git/
+
+----------------------
+
+#adding files to staging area
+$git add github-intro
+
+----------------------
+
+#status
+$git status          
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   github-intro
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        github-commands
+------------------------
+        
+#Removing files from staging area
+$git rm --cached github-intro     
+                                                                                                                            
+rm 'github-intro'
+
+------------------------
+
+
+#status
+$git rm --cached github-intro
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        github-commands
+        github-intro
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+-------------------------
+#staged the value and commited
+$git commit -m "github-into"     
+                             
+[master (root-commit) a44fae2] github-into
+ 1 file changed, 83 insertions(+)
+ create mode 100644 github-intro
+--------------------------
+
+#Edited the file and checking status
+$git status
+                 
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   github-intro
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        github-commands
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+---------------------------
+
+#reverting back the file to older state
+$git restore github-intro  
+
+#the added line in that file got removed,if you need to add it then add and commit the file agin
+
+----------------------------
+
+#adding and commiting the change
+
+$git add github-intro
+
+$ git commit -m "extra space deleted"
+
+[master 42be953] extra space deleted
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+ 
+----------------------------
+
+#Checking the logs
+$git log  
+                          
+commit 42be953d18fb373396305fe283a2fc68e5292f11 (HEAD -> master)
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Sat Jan 8 05:43:54 2022 -0500
+
+    extra space deleted
+
+commit a44fae2a947120af98156087d505b64a120d60d2
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Sat Jan 8 05:34:57 2022 -0500
+
+    github-into
+_____________________________
+
+#Logs at oneline
+$git log --oneline               
+                                                                                                                             
+42be953 (HEAD -> master) extra space deleted
+a44fae2 github-into
+
+-----------------------------
+#git reset (removing the stage)
+#--hard (remove the file if created any)
+# if you dont specifi then it will be of soft (you can see by $git status)
+$git reset a44fae2       
+Unstaged changes after reset:
+M       github-intro
+
+-----------------------------
+
+$git log
+
+commit a44fae2a947120af98156087d505b64a120d60d2 (HEAD -> master)
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Sat Jan 8 05:34:57 2022 -0500
+
+    github-into
+----------------------------
+#after softreset you can add them and commit if you need or else(do hardreset or git rm --chache filename)
+$git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   github-intro
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        github-commands
+
+no changes added to commit (use "git add" and/or "git commit -a")
+                                                                                                                                                                      
+$ git add github-intro               
+                                                                                                                                                                     
+
+$ git commit -m "extra space deleted"
+[master f81b236] extra space deleted
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+ 
+---------------------------
+
+#removes the changes made in that commit id
+#deleting a commit (Revert)
+# If you don't want a rever commit then give (--no-commit)
+$git revert f81b236
+
+[master 9d17a9a] Revert "extra space deleted"
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+ 
+ 
+#git log
+ 
+commit 9d17a9ac293bd486ba6a65a2a32a3671029cfca5 (HEAD -> master)
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Sat Jan 8 06:10:03 2022 -0500
+
+    Revert "extra space deleted"
+    
+    This reverts commit f81b236d8b890240fa53a3561abbe76345fe9e4d.
+
+commit f81b236d8b890240fa53a3561abbe76345fe9e4d
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Sat Jan 8 06:03:35 2022 -0500
+
+    extra space deleted
+
+commit a44fae2a947120af98156087d505b64a120d60d2
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Sat Jan 8 05:34:57 2022 -0500
+
+    github-into
+_________________________
+
+
+                                                                                                                                                         
+
+
+
+
+
+             
+
+
+
+                
+
+
+
+
+                 
+
+
+
+

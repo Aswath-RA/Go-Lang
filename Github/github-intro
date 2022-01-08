@@ -1,0 +1,83 @@
+#GitHub
+#It is a Version Control System or Source Code Management
+
+#Types Version Control System
+	#Local
+	#Centralized
+	#Distributed
+	
+#git is a type of Distributed version conrol system
+
+#Features of git
+	#Works on distributed system
+	#compatiable with all operating system
+	#non-linear development
+	#brancing
+	#reliable
+	
+	
+#Installing Git in linux
+$sudo apt-get install git
+   
+[sudo] password for blackfox: 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+git is already the newest version (1:2.34.1-1).
+The following packages were automatically installed and are no longer required:
+cryptsetup-run fastjar jarwrapper libavresample4 libmbim-glib4 libmbim-proxy libqmi-glib5 libqmi-proxy librest-0.7-0 libwacom-bin python3-editor
+python3-parameterized ruby-atomic ruby-thread-safe starkiller zaproxy
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 275 not upgraded.
+
+
+#git version
+$git --version          
+                                       
+git version 2.34.1
+
+
+
+
+#git workflow
+ 
+#		working dir	           staging area		           local repo	                       	remote repo
+#		
+#		    |         git add            |                              |                                    |
+#		    ----------------------------->
+#							    git commit
+#						  ------------------------------>                git push
+#						  				 ------------------------------------>
+#						  				 
+#						  				                 git fetch
+#						  				 <-------------------------------------
+#						  
+#						  git merge
+#	          <---------------------------------------------------------------
+#	          
+#	                                          git checkout
+#	          <---------------------------------------------------------------				 
+#		                                                   git pull
+#		<---------------------------------------------------------------------------------------------------------
+#		
+#				
+			
+	
+
+#git  global config username
+$git config --global user.name "Aswath-RA"      
+
+#git global config mail
+$git config --global user.email "aswathra@gmail.com" 
+
+
+#If you have many project with different name then use local 
+#git  local config username
+$git config user.name "Aswath-RA"      
+
+#git local config mail
+$git config  user.email "aswathra@gmail.com" 
+
+
+
+
