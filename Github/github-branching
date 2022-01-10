@@ -1,0 +1,249 @@
+#git branching
+#git braching is used to seprate the code and to deploy it when ever needed.
+
+
+#In this ,I have created 3 branch master,develop,QA
+
+
+#                 master <--------
+#                  |             |
+#                  |             |
+#                 Develop------>QA
+#
+#
+# creating a branch (Develop) in that creating a file ,Creating another branch (QA) merging those into (master)
+-------------------
+
+#First pull the repo to update.
+$git pull -r  
+
+Already up to date.
+
+-------------------
+
+#branch checking
+$git branch  
+                                  
+* master
+
+
+#Displaying all branch
+$git branch -a    
+                                                                                                                                                         
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+                                                                                                                                                                       #listing the files
+ ll
+total 8
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+                                                                                                                                                                       #Creatig a new branch develop
+$git branch develop
+ #Listing branches                                                                                                                                                               $git branch    
+     
+  develop
+* master
+
+-------------------
+                                                                                                                                                                      #Changing branch master to develop 
+$ git checkout develop 
+              
+Switched to branch 'develop'
+                                                                                                                                                                       
+$git branch          
+* develop
+  master
+                                                                                                                                                                       #listing the files
+$ ll
+total 8
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+
+-------------------
+
+#Creatig a new branch QA 
+$ git checkout -b QA    
+
+Switched to a new branch 'QA'
+
+#listing the files
+$ ll
+total 8
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+
+#Listing all branch
+$ git branch        
+
+* QA
+  develop
+  master
+  
+#Changing branch QA to Develop
+$git checkout develop
+
+Switched to branch 'develop'
+                                                                                                                                                                      
+$ ls
+gitlearn  README.md
+-------------------
+                                                                                                                                                                       #Creating new file and commiting.
+$ cat >> developingarea      
+i am here developing a new branch for develop
+                                                                                                                                                                       #listing the files
+$ ll
+total 12
+-rw-r--r-- 1 blackfox blackfox 46 Jan 10 05:27 developingarea
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+                                                                                                                                                                       
+$ git add .           
+                                                                                                                                                                       
+$ git commit -m "new branch for developing"
+[develop a1dcd5b] new branch for developing
+ 1 file changed, 1 insertion(+)
+ create mode 100644 developingarea
+ 
+ -------------------
+                                                                                                                                                                      $ git status                               
+On branch develop
+nothing to commit, working tree clean
+                                                                                                                                                                      $git checkout master                      
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+                                                                                                                                                                       
+$ll
+total 8
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+                                                                                                                                                                       -------------------
+                                                                                                                                                                       
+$git checkout develop
+Switched to branch 'develop'
+                                                                                                                                                                       #listing the files
+$ ll
+total 12
+-rw-r--r-- 1 blackfox blackfox 46 Jan 10 05:28 developingarea
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+                                                                                                                                                                       -------------------
+$ git checkout QA     
+Switched to branch 'QA'
+                                                                                                                                                                       #listing the files
+ ll
+total 8
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+                                                                                                                                                                      
+#Merging branch 
+$git merge develop QA
+
+Updating ff12985..a1dcd5b
+Fast-forward
+ developingarea | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 developingarea
+                                                                                                                                                                       
+$ll
+total 12
+-rw-r--r-- 1 blackfox blackfox 46 Jan 10 05:30 developingarea
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+                                                                                                                                                                       -------------------
+                                                                                                                                                                       
+$git checkout develop
+Switched to branch 'develop'
+                                                                                                                                                                       #listing the files
+$ll
+total 12
+-rw-r--r-- 1 blackfox blackfox 46 Jan 10 05:30 developingarea
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+-------------------
+
+#Checking out to master
+$git checkout master 
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+ #listing the files                                                                                                                                                                      ll
+total 8
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+-------------------
+
+#Merging branch 
+$git merge QA master 
+Updating ff12985..a1dcd5b
+Fast-forward
+ developingarea | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 developingarea
+                                                                                                                                                                     #listing the files 
+ll
+total 12
+-rw-r--r-- 1 blackfox blackfox 46 Jan 10 05:31 developingarea
+-rw-r--r-- 1 blackfox blackfox 43 Jan 10 00:24 gitlearn
+-rw-r--r-- 1 blackfox blackfox 13 Jan  9 23:43 README.md
+                                                                                                                                                                       
+$git brach -r       
+git: 'brach' is not a git command. See 'git --help'.
+
+The most similar command is
+        branch
+                                                                                                                                                                       git branch -r                                                                                                                                                
+  origin/HEAD -> origin/master
+  origin/master
+
+$git branch   
+                                                                                                                                                                      
+  QA
+  develop
+* master
+-------------------
+                                                                                                                                                                      
+#Deleting branch QA
+$git branch -d QA
+Deleted branch QA (was a1dcd5b).
+
+#Deleting branch Develop
+$git branch -d develop
+Deleted branch develop (was a1dcd5b).
+-------------------
+
+#Logs
+$git log              
+commit a1dcd5b5f28c5b13468497daf7a4ce4122406207 (HEAD -> master)
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Mon Jan 10 05:27:50 2022 -0500
+
+    new branch for developing
+
+commit ff129853c86d42bb1a40b24d8f6b3bb005e69ebf (origin/master, origin/HEAD)
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Mon Jan 10 00:25:18 2022 -0500
+
+    Added another line
+
+commit 7f4366ad59b7f542d586d5eee3c26fe4174ccc70
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Sun Jan 9 23:45:37 2022 -0500
+
+    git leaning
+
+commit 1363243750bcbffdfa769af8739db48e1d169ec8
+Author: Vasanth-rasf <97337867+Vasanth-rasf@users.noreply.github.com>
+Date:   Sun Jan 9 23:42:32 2022 -0500
+
+    Initial commit
+-------------------
+
+#status
+$git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+-------------------
+                                                                                                                                                                      
