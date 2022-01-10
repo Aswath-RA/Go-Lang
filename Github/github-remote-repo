@@ -1,0 +1,185 @@
+#github
+#Remote repo is used to store and manage the data and to collabrate with others.
+#In this, I am using another  account: https://github.com/Vasanth-rasf/ 
+--------------------
+
+#Github account creation
+#create a account in github so that we can store the data in it
+--------------------
+
+#Creating  a new repo in github account
+#create a new repo by clicking the new repo option in dasboard.
+--------------------
+
+#In this i am using a new account vasanth.rasf@gmail.com
+#Clone the new repo in your machine
+$git clone https://github.com/Vasanth-rasf/gitlearning.git
+
+Cloning into 'gitlearning'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+--------------------
++
+
+#After cloning create new files and push them to the repo
+#change the directory to cloned dir
+$cd gitlearning  
+
+#Creating a new file
+$cat >> gitlearn  
+
+hai i am learning git 
+CTRL+D
+--------------------
+
+#adding files to staging area.
+$git add .    
+                                             #Commiting                                                                                                                            
+$ git commit -m "git leaning"                              
+[master 7f4366a] git leaning
+ 1 file changed, 1 insertion(+)
+ create mode 100644 gitlearn 
+--------------------
+
+#pushing files into remote repo                                                                                                                           
+$git push origin master 
+    
+git: 'credential-manager-core' is not a git command. See 'git --help'.
+Username for 'https://github.com': vasanth.rasf@gmail.com
+Password for 'https://vasanth.rasf@gmail.com@github.com': 
+git: 'credential-manager-core' is not a git command. See 'git --help'.
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/Vasanth-rasf/gitlearning.git/'
+--------------------
+                                                                                                                                                               
+#Username and password can't be used to push .
+#So we have to create a personal access token by
+#Click profile-->setting--->Developer setting--->personal acess token
+$ git push origin master   
+                                                                                                                                  
+git: 'credential-manager-core' is not a git command. See 'git --help'.
+Username for 'https://github.com': vasanth.rasf@gmail.com
+Password for 'https://vasanth.rasf@gmail.com@github.com': 
+git: 'credential-manager-core' is not a git command. See 'git --help'.
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 300 bytes | 300.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Vasanth-rasf/gitlearning.git
+   1363243..7f4366a  master -> master
+--------------------
+
+#Editing that file and pushing 
+$ cat >> gitlearn
+git is fun to learn
+                                                                                                                                                                      
+$ git status            
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   gitlearn
+
+no changes added to commit (use "git add" and/or "git commit -a")
+                                                                                                                                                                     
+$ git add .    
+         
+#gitcommit                                                                                                                                                              
+$ git commit -m "Added another line"
+[master ff12985] Added another line
+ 1 file changed, 1 insertion(+)
+#git push                                                                                                                                                
+$ git push origin master            
+git: 'credential-manager-core' is not a git command. See 'git --help'.
+Username for 'https://github.com': vasanth.rasf@gmail.com
+Password for 'https://vasanth.rasf@gmail.com@github.com': 
+git: 'credential-manager-core' is not a git command. See 'git --help'.
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 315 bytes | 315.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Vasanth-rasf/gitlearning.git
+   7f4366a..ff12985  master -> master
+--------------------
+#Logs
+$git log                            
+commit ff129853c86d42bb1a40b24d8f6b3bb005e69ebf (HEAD -> master, origin/master, origin/HEAD)
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Mon Jan 10 00:25:18 2022 -0500
+
+    Added another line
+
+commit 7f4366ad59b7f542d586d5eee3c26fe4174ccc70
+Author: Aswath-RA <aswathra@gmail.com>
+Date:   Sun Jan 9 23:45:37 2022 -0500
+
+    git leaning
+
+commit 1363243750bcbffdfa769af8739db48e1d169ec8
+Author: Vasanth-rasf <97337867+Vasanth-rasf@users.noreply.github.com>
+Date:   Sun Jan 9 23:42:32 2022 -0500
+
+    Initial commit
+--------------------
+#git pull to get the data from repo
+$git pull -r  
+                                     
+Already up to date.
+--------------------
+
+#To know which repo we are working
+$git remote -v                                                 
+origin  https://github.com/Vasanth-rasf/gitlearning.git (fetch)
+origin  https://github.com/Vasanth-rasf/gitlearning.git (push)
+
+--------------------
+#Tochange the repo url
+#Tochange fetch and push
+$git remote set-url origin <url>
+
+#To change for fetch --> fetch the data to that repo
+$git remote set-url --fetch origin <url>
+
+#To change for push --> push the data to that repo
+$git remote set-url --push origin <url> 
+
+--------------------
+
+#Importing the local repo to Remote repo
+
+#initalize the dir with git
+$git init .
+
+#Dont select the readme while new repo creation
+#once created copy that url
+
+#Adding remote repo 
+$git remote add origin <url>
+
+#change branch if needed
+$git branch -m brachname
+
+#Pushing 
+$git push -u origin branchname
+ 
+
+
+
+                     
+
+                   
+
+
+
+
+                                                                                                                                                                       
+
