@@ -1,0 +1,103 @@
+#github rebase
+#rebase will give the sequential commit
+
+---------------------
+
+#Creating a new branch
+$git checkout -b develop     
+---------------------
+                  
+Switched to a new branch 'develop'
+                                   
+$ls
+README.md
+---------------------
+         
+#Creating a new file        
+$touch develop       
+
+#Adding for commit
+$ git add .  
+         
+#Commited 
+$ git commit -m "develop file added"
+
+[develop eccfddb] develop file added
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 develop
+ 
+---------------------
+ 
+#Creating a new file
+$ touch develop1       
+
+#Adding for commit            
+$ git add .  
+                       
+ #Commited                                                                                                                                                              $ git commit -m "develop2 added"    
+[develop 0ba4ac4] develop2 added
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 develop1
+ 
+---------------------
+
+$ls
+develop  develop1  README.md
+
+#Checking out to master
+$ git checkout master  
+         
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+                                                                                                                                                                       
+                                                                                                                                                                   
+$ ls
+masterfile  README.md
+
+---------------------
+
+#Rebase                                                                                                                                                                 $ git rebase develop master
+
+Successfully rebased and updated refs/heads/master.
+
+---------------------
+                                                                                                                                                                       
+$ ls
+develop  develop1  masterfile  README.md
+                                                                                                                                                                      
+$ git checkout develop 
+    
+Switched to branch 'develop'
+                                                                                                                                                                      
+$ ls
+
+develop  develop1  README.md
+                                                                                                                                                                       ---------------------
+                                                                                                                                                                       
+$ touch as            
+                                                                                                                                                                       
+$ git add .           
+ 
+$ git commit -m "as added"      
+
+[develop 1991747] as added
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 as
+                                                                                                                                                                       
+$ ls
+as  develop  develop1  README.md
+                                                                                                                                                                       
+$ git checkout master   
+  
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+                                                                                                                                                                       
+$ ls
+develop  develop1  masterfile  README.md
+                                                                                                            
+                                                       ---------------------                                                                                                                
+
+         
+                       	
