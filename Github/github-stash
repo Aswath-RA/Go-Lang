@@ -1,0 +1,195 @@
+#git stash
+#git stash allows us to save the file and later we can commit.
+#you can list them and you can use those using pop function.
+---------------------
+
+#Checking branch
+$ git branch  
+  develop
+* master
+  security
+  
+#Listing Files  
+$ ls
+develop  develop1  masterfile  README.md  securityfile2
+---------------------
+
+#Changing Branch
+$ git checkout security  
+
+Switched to branch 'security'
+
+#Creating File
+$touch importantupdate
+
+#Adding for commit
+$ git add .   
+---------------------
+
+#Stash --Using this Saved the file for later commit        
+$ git stash 
+
+Saved working directory and index state WIP on security: 8d2529d security file submited
+
+---------------------
+
+#Creating File
+$ touch importantdeploy
+
+#Adding for commit
+$git add .
+---------------------
+
+#Stash --Using this Saved the file for later commit   
+$ git stash 
+
+Saved working directory and index state WIP on security: 8d2529d security file submited
+---------------------
+
+#Changing Branch
+$ git checkout develop 
+Switched to branch 'develop'
+
+$ ls
+as  develop  develop1  README.md
+---------------------
+
+#Creating File
+$ touch develop3   
+   
+#Adding for commit
+$ git add .    
+       
+#Commited
+$ git commit -m "develop3 added"        
+[develop ec25e74] develop3 added
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 develop3
+
+$ ls
+as  develop  develop1  develop3  README.md
+                                                                                                                                                                      #Changing Branch 
+$ git checkout security     
+    
+Switched to branch 'security'
+
+$ ls
+develop  develop1  masterfile  README.md  securityfile1  securityfile2
+
+---------------------
+
+#Stash List
+$git stash list    
+   
+stash@{0}: WIP on security: 8d2529d security file submited
+stash@{1}: WIP on security: 8d2529d security file submited
+---------------------
+
+#Stash Pop id
+$ git stash pop 0
+
+On branch security
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   importantdeploy
+
+Dropped refs/stash@{0} (0e385ad89f495ca76921a4658887672dc6d13297)
+---------------------
+
+$ git status                    
+On branch security
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   importantdeploy
+
+$ git commit -m "importantdeploy updated"
+[security 90cf76d] importantdeploy updated
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 importantdeploy
+---------------------
+
+#Stash default pop
+$ git stash pop        
+                  
+On branch security
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   importantupdate
+
+Dropped refs/stash@{0} (426eda9f1fcac475e91a9bca489d489e143efa98)
+---------------------
+
+$ git status  
+  
+On branch security
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   importantupdate
+
+ #Commited 
+ $ git commit -m "important update needed"
+[security 6b10ec8] important update needed
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 importantupdate
+
+$ ls
+develop  develop1  importantdeploy  importantupdate  masterfile  README.md  securityfile1  securityfile2
+---------------------
+
+#Stash list (empty)
+
+$ git stash list    
+
+---------------------
+
+#git log                    
+$ git log                                
+commit 6b10ec85369618c65e0a4cc62b35a6542d5c2533 (HEAD -> security)
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:55:22 2022 -0500
+
+    important update needed
+
+commit 90cf76dd0389a7f8eca86f79401d83a50ba00bf6
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:54:34 2022 -0500
+
+    importantdeploy updated
+
+commit 8d2529dd75cbc649757b863edcf2b3174382d02a
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:34:32 2022 -0500
+
+    security file submited
+
+commit 8871d36ddb8b715a4abae9d9f9f087d4bd72eeb3
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:34:17 2022 -0500
+
+    security file submited
+
+commit a77fcbb152479e1258b177fe99104162707b34a5
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:10:02 2022 -0500
+
+    master file added
+
+commit 0ba4ac4ae530ca16c04fdfe0268a9d0e2db2b2f4
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:11:40 2022 -0500
+
+    develop2 added
+
+commit eccfddbc415c82df991526def3c584eb1a6cb2a2
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:11:05 2022 -0500
+
+    develop file added
+
+commit c2ff3fbad6899ac80655dd7a0b8e82fb548b122e (origin/master, origin/HEAD)
+Author: Vasanth-rasf <97337867+Vasanth-rasf@users.noreply.github.com>
+Date:   Tue Jan 11 00:07:28 2022 -0500
+
+    Initial commit
+---------------------
+
