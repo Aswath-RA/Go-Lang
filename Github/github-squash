@@ -1,0 +1,72 @@
+#github-squash
+#It is used to combine all given number of commits to a single commit.
+
+
+#listing files
+ls
+develop  develop1  importantdeploy  importantupdate  masterfile  README.md  securityfile1  securityfile2
+                                                                                                                                                                       
+┌──(blackfox㉿kali)-[~/test1]
+└─$ git log --oneline
+6b10ec8 (HEAD -> security) important update needed
+90cf76d importantdeploy updated
+8d2529d security file submited
+8871d36 security file submited
+a77fcbb master file added
+0ba4ac4 develop2 added
+eccfddb develop file added
+c2ff3fb (origin/master, origin/HEAD) Initial commit
+
+
+#git Squash
+┌──(blackfox㉿kali)-[~/test1]
+└─$ git rebase -i eccfddb    
+[detached HEAD 1584401] develop2 added
+ Date: Tue Jan 11 00:11:40 2022 -0500
+ 6 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 develop1
+ create mode 100644 importantdeploy
+ create mode 100644 importantupdate
+ create mode 100644 masterfile
+ create mode 100644 securityfile1
+ create mode 100644 securityfile2
+Successfully rebased and updated refs/heads/security.
+                                                                                                                                                                                                                                                                                                                                            
+┌──(blackfox㉿kali)-[~/test1]
+└─$ git log                                                                                                                                                        
+commit 1584401c6ad0b3d3c3ceddc8654990f0c4a93e8b (HEAD -> security)
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:11:40 2022 -0500
+
+    develop2 added
+    
+    master file added
+    
+    security file submited
+    
+    security file submited
+    
+    importantdeploy updated
+    
+    important update needed
+
+commit eccfddbc415c82df991526def3c584eb1a6cb2a2
+Author: Vasanth-rasf <vasanth.rasf@gmail.com>
+Date:   Tue Jan 11 00:11:05 2022 -0500
+
+    develop file added
+
+commit c2ff3fbad6899ac80655dd7a0b8e82fb548b122e (origin/master, origin/HEAD)
+Author: Vasanth-rasf <97337867+Vasanth-rasf@users.noreply.github.com>
+Date:   Tue Jan 11 00:07:28 2022 -0500
+
+    Initial commit
+                                                                                                                                                                       
+┌──(blackfox㉿kali)-[~/test1]
+└─$ git log --oneline    
+1584401 (HEAD -> security) develop2 added
+eccfddb develop file added
+c2ff3fb (origin/master, origin/HEAD) Initial commit
+                                                                                                                                                                       
+┌──(blackfox㉿kali)-[~/test1]
+└─$ 
