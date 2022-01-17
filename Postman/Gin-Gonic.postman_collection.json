@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "8e686845-02cf-4738-8296-f724cbef1b9d",
+		"name": "Gin-Gonic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get request from api",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8051/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8051",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get request from api",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8051/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8051",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Jan 2022 05:16:06 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "141"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"2f31713c-e9a1-4b76-853f-de06c4ffadec\",\n        \"name\": \"Aswath\",\n        \"age\": 21\n    },\n    {\n        \"id\": \"169f3be0-a0b2-4bb8-8991-60754b83841e\",\n        \"name\": \"Rock\",\n        \"age\": 24\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Post request to api",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": null
+			},
+			"response": [
+				{
+					"name": "Post request from api",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"name\": \"sheyam\",\n        \"age\": 22\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8051/useradd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8051",
+							"path": [
+								"useradd"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Jan 2022 05:20:58 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "24"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Message\": \"User Added\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get requset checking from api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": [
+				{
+					"name": "api checking",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8051/ping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8051",
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Jan 2022 05:22:30 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "18"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"pong\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Put request to api",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"{",
+							"    \"name\": \"john\",",
+							"",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"john\",\n    \"age\": 21\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8051/169f3be0-a0b2-4bb8-8991-60754b83841e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8051",
+					"path": [
+						"169f3be0-a0b2-4bb8-8991-60754b83841e"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put request to api",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"john\",\n    \"age\": 21\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8051/169f3be0-a0b2-4bb8-8991-60754b83841e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8051",
+							"path": [
+								"169f3be0-a0b2-4bb8-8991-60754b83841e"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Jan 2022 05:27:55 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Message\": \"User Updated\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete request from api",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8051/169f3be0-a0b2-4bb8-8991-60754b83841e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8051",
+					"path": [
+						"169f3be0-a0b2-4bb8-8991-60754b83841e"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete request from api",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8051/169f3be0-a0b2-4bb8-8991-60754b83841e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8051",
+							"path": [
+								"169f3be0-a0b2-4bb8-8991-60754b83841e"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Jan 2022 06:33:29 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Message\": \"User Deleted\"\n}"
+				}
+			]
+		}
+	]
+}
