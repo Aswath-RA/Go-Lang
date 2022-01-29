@@ -13,7 +13,7 @@ func main() {
 }
 func cloneGit() (err error) {
 	username := "Vasanth-rasf"
-	password := "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"
+	password := "Acess Token"
 	repo := "github.com/Vasanth-rasf/go-git-saplre.git"
 	url := fmt.Sprintf("https://%s:%s@%s", username, password, repo)
 	options := git.CloneOptions{
